@@ -3,18 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>File Scan</title>
-	<link rel="stylesheet" href="/static/style.css">
+	<title>File Upload and Scan</title>
 </head>
 <body>
-	<div class="container">
-		<h1>File Upload and Scan</h1>
-		<form id="upload-form">
-			<input type="file" id="file-input" name="file" required />
-			<button type="submit">Upload and Scan</button>
-		</form>
-		<div id="result"></div>
+	<h1>File Upload and Scan</h1>
+	<form action="/upload" method="post" enctype="multipart/form-data">
+		<label for="file">Choose File</label>
+		<input type="file" name="file" id="file" required><br><br>
+		<label for="engine">Select Antivirus Engine:</label>
+		<select name="engine" id="engine">
+			<option value="vt">VirusTotal</option>
+			<option value="ha">Hybrid Analysis</option>
+		</select><br><br>
+		<button type="submit">Upload and Scan</button>
+	</form>
+	<div id="result">
+		{% if error %}
+		<p style="color: red;">Error: {{ error }}</p>
+		{% endif %}
+		{% if message %}
+		<p>{{ message }}</p>
+<pre>{{ result }}</pre>
+		{% endif %}
 	</div>
-	<script src="/static/script.js"></script>
 </body>
-</html>
+</html> 
