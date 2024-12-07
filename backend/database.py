@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from datatime import datetime
+from datetime import datetime
 
 DB_NAME = "fsss_scanner.db"
 
